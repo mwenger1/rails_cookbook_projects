@@ -1,0 +1,36 @@
+<script>
+  videojs.options.flash.swf = "#{Rails.root}/video-js.swf";
+</script>
+
+  
+<p id="notice"><%= notice %></p>
+ <% cache [@video, expires_in: 30.minutes] do %>
+   <div class="row">
+    <div class="col-lg-8">
+      <h3><%= @video.title %></h3>
+      <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="640" height="264"
+      data-setup="{}">
+	<source src="<%=@video.video.url(:mp4)%>" type='video/mp4' />
+      </video>
+      <br/>
+      <p><%= @video.description %></p>
+    </div>
+ <% end %>
+
+ <% cache [@videos, expires_in: 30.minutes] do%>
+    <div class="col-lg-4">
+      <h3>Other Videos</h3>
+      <% @videos.each do |video| %>
+          <h3><%=link_to video.title, video %></h3>
+          <% video.video_screenshot%>
+          <p><%= image_tag display_screenshot(video.slug,video.id) , :width => 200, :height => 150 %></p>
+          <p><%= link_to 'See this Video &raquo;'.html_safe ,video, :class=>"btn btn-success"%></p>
+     <%end%>
+    </div>
+   </div>
+ <% end %>
+
+<% if user_signed_in?%>
+ <%= link_to 'Edit', edit_video_path(@video) %> |
+ <%= link_to 'Back', videos_path %>
+<% end %>

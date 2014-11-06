@@ -1,0 +1,18 @@
+	<div id="columns">
+	      <div id="posts">
+	       <div class="page">
+	        <% @pins.each do |p| %>
+		<div class="pin">
+		        <%= image_tag 'http://images.sciencedaily.com/2013/03/130307124701-large.jpg'%>
+			<p>
+			     Pinned On: <%= p.board.title %> <br/> <%= p.board.user.email %>
+
+			</p>
+		</div>
+		<%end%>
+	      </div>
+	    </div>	
+	</div>
+	<div class="page">
+	<%= paginate @pins %>
+	</div>

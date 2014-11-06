@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @part.title
+%p
+  %b Part type:
+  = @part.part_type_id
+%p
+  %b Content:
+  = @part.content
+%p
+  %b Meta:
+  = @part.meta
+%p
+  %b User:
+  = @part.user_id
+
+= link_to 'Edit', edit_part_path(@part)
+\|
+= link_to 'Back', parts_path

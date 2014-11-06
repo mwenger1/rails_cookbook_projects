@@ -1,0 +1,30 @@
+/ #tree1{"data-url" => "/pages.json"}
+/ :javascript
+/   $('#tree1').tree();
+%h3 Manage Pages
+%table.table
+  %thead
+    %tr
+      %th Title
+      %th Body
+      %th Parent
+      %th
+      %th
+      %th
+  %tbody
+    - @pages.each do |page|
+      %tr
+        %td= page.title
+        %td= page.body.html_safe
+        %td= page.parent_page.title if page.parent_page
+        %td
+          = link_to page, :class=>"btn btn-info", :target=>"blank" do
+            %i.fa.fa-external-link-square
+        %td
+          = link_to edit_page_path(page), :class=>"btn btn-primary" do
+            %i.fa.fa-pencil-square-o
+        %td
+          = link_to page, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger" do
+            %i.fa.fa-trash-o.fa-lg
+%br/
+= link_to 'Add Page', new_page_path, :class=>"btn btn-default"

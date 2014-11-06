@@ -1,0 +1,604 @@
+  [1m[36m (55.3ms)[0m  [1mDROP DATABASE IF EXISTS `project-2_test`[0m
+  [1m[35m (0.7ms)[0m  CREATE DATABASE `project-2_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (90.2ms)[0m  [1mCREATE TABLE `admin_users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (175.3ms)[0m  CREATE UNIQUE INDEX `index_admin_users_on_email` USING btree ON `admin_users` (`email`) 
+  [1m[36m (153.8ms)[0m  [1mCREATE UNIQUE INDEX `index_admin_users_on_reset_password_token` USING btree ON `admin_users` (`reset_password_token`) [0m
+  [1m[35m (61.3ms)[0m  CREATE TABLE `attendances` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `event_id` int(11), `created_at` datetime, `updated_at` datetime, `state` varchar(255)) ENGINE=InnoDB
+  [1m[36m (62.6ms)[0m  [1mCREATE TABLE `attendences` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `event_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (61.3ms)[0m  CREATE TABLE `events` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `start_date` datetime, `start_time` datetime, `location` varchar(255), `agenda` text, `address` text, `organizer_id` int(11), `created_at` datetime, `updated_at` datetime, `slug` varchar(255)) ENGINE=InnoDB
+  [1m[36m (61.8ms)[0m  [1mCREATE TABLE `friendly_id_slugs` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `slug` varchar(255) NOT NULL, `sluggable_id` int(11) NOT NULL, `sluggable_type` varchar(40), `scope` varchar(255), `created_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (132.0ms)[0m  CREATE UNIQUE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`, `scope`) 
+  [1m[36m (141.9ms)[0m  [1mCREATE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`) [0m
+  [1m[35m (143.3ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_sluggable_id` USING btree ON `friendly_id_slugs` (`sluggable_id`) 
+  [1m[36m (152.6ms)[0m  [1mCREATE INDEX `index_friendly_id_slugs_on_sluggable_type` USING btree ON `friendly_id_slugs` (`sluggable_type`) [0m
+  [1m[35m (73.8ms)[0m  CREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `event_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (143.1ms)[0m  [1mCREATE INDEX `index_taggings_on_event_id` USING btree ON `taggings` (`event_id`) [0m
+  [1m[35m (141.8ms)[0m  CREATE INDEX `index_taggings_on_tag_id` USING btree ON `taggings` (`tag_id`) 
+  [1m[36m (73.1ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (72.3ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (153.7ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) [0m
+  [1m[35m (141.9ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) 
+  [1m[36m (60.4ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (187.2ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36m (0.6ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (31.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130818052628')
+  [1m[36m (43.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130818052216')[0m
+  [1m[35m (43.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130811114749')
+  [1m[36m (44.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130811114714')[0m
+  [1m[35m (43.6ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130811080811')
+  [1m[36m (43.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130811083313')[0m
+  [1m[35m (44.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130810081757')
+  [1m[36m (43.9ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130811083714')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.1ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT `users`.* FROM `users` ORDER BY `users`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mUser Exists (1.2ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'saurabh.a.bhatia@gmail.com' LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  ROLLBACK
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT `users`.* FROM `users` ORDER BY `users`.`id` DESC LIMIT 1[0m
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (1.1ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'saurabh.a.bhatia@gmail.com' LIMIT 1
+  [1m[36m (0.5ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mUser Exists (1.0ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'saurabh.a.bhatia@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO `users` (`created_at`, `email`, `encrypted_password`, `updated_at`) VALUES ('2014-01-27 12:46:34', 'saurabh.a.bhatia@gmail.com', '$2a$04$2dgYHDkgy5yiaTyJQO./uePV6G9bxdCFD1324ZUjzbDYQ5CEitFSC', '2014-01-27 12:46:34')
+  [1m[36m (43.2ms)[0m  [1mCOMMIT[0m
+  [1m[36m (413.2ms)[0m  [1mDROP DATABASE IF EXISTS `project-2_test`[0m
+  [1m[35m (0.8ms)[0m  CREATE DATABASE `project-2_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (74.5ms)[0m  [1mCREATE TABLE `admin_users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (131.4ms)[0m  CREATE UNIQUE INDEX `index_admin_users_on_email` USING btree ON `admin_users` (`email`) 
+  [1m[36m (130.4ms)[0m  [1mCREATE UNIQUE INDEX `index_admin_users_on_reset_password_token` USING btree ON `admin_users` (`reset_password_token`) [0m
+  [1m[35m (62.5ms)[0m  CREATE TABLE `attendances` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `event_id` int(11), `created_at` datetime, `updated_at` datetime, `state` varchar(255)) ENGINE=InnoDB
+  [1m[36m (62.3ms)[0m  [1mCREATE TABLE `attendences` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `event_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (73.5ms)[0m  CREATE TABLE `events` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `start_date` datetime, `start_time` datetime, `location` varchar(255), `agenda` text, `address` text, `organizer_id` int(11), `created_at` datetime, `updated_at` datetime, `slug` varchar(255)) ENGINE=InnoDB
+  [1m[36m (74.0ms)[0m  [1mCREATE TABLE `friendly_id_slugs` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `slug` varchar(255) NOT NULL, `sluggable_id` int(11) NOT NULL, `sluggable_type` varchar(40), `scope` varchar(255), `created_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (153.3ms)[0m  CREATE UNIQUE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`, `scope`) 
+  [1m[36m (153.1ms)[0m  [1mCREATE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`) [0m
+  [1m[35m (153.0ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_sluggable_id` USING btree ON `friendly_id_slugs` (`sluggable_id`) 
+  [1m[36m (152.6ms)[0m  [1mCREATE INDEX `index_friendly_id_slugs_on_sluggable_type` USING btree ON `friendly_id_slugs` (`sluggable_type`) [0m
+  [1m[35m (73.0ms)[0m  CREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `event_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (164.6ms)[0m  [1mCREATE INDEX `index_taggings_on_event_id` USING btree ON `taggings` (`event_id`) [0m
+  [1m[35m (152.9ms)[0m  CREATE INDEX `index_taggings_on_tag_id` USING btree ON `taggings` (`tag_id`) 
+  [1m[36m (73.5ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (62.0ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (131.8ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) [0m
+  [1m[35m (130.8ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) 
+  [1m[36m (94.6ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (199.1ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36m (0.9ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (41.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130818052628')
+  [1m[36m (43.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130818052216')[0m
+  [1m[35m (43.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130811114749')
+  [1m[36m (43.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130811114714')[0m
+  [1m[35m (43.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130811080811')
+  [1m[36m (43.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130811083313')[0m
+  [1m[35m (43.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130810081757')
+  [1m[36m (43.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130811083714')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.1ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.8ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.5ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:56', '2014-01-27 12:47:56', 980190962)
+  [1m[36mFixture Insert (0.9ms)[0m  [1mINSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:56', '2014-01-27 12:47:56', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_admin_users_on_email': INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:56', '2014-01-27 12:47:56', 298486374)
+  [1m[35m (149.9ms)[0m  ROLLBACK
+  [1m[36m (0.5ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.6ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.6ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.8ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Insert (0.9ms)[0m  INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:56', '2014-01-27 12:47:56', 980190962)
+  [1m[36mFixture Insert (0.9ms)[0m  [1mINSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:56', '2014-01-27 12:47:56', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_admin_users_on_email': INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:56', '2014-01-27 12:47:56', 298486374)
+  [1m[35m (43.5ms)[0m  ROLLBACK
+  [1m[36m (0.4ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.5ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.5ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.6ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Insert (0.7ms)[0m  INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:56', '2014-01-27 12:47:56', 980190962)
+  [1m[36mFixture Insert (1.2ms)[0m  [1mINSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:56', '2014-01-27 12:47:56', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_admin_users_on_email': INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:56', '2014-01-27 12:47:56', 298486374)
+  [1m[35m (46.3ms)[0m  ROLLBACK
+  [1m[36m (0.7ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.4ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.3ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.8ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Insert (0.8ms)[0m  INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:57', '2014-01-27 12:47:57', 980190962)
+  [1m[36mFixture Insert (1.1ms)[0m  [1mINSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:57', '2014-01-27 12:47:57', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_admin_users_on_email': INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:57', '2014-01-27 12:47:57', 298486374)
+  [1m[35m (44.8ms)[0m  ROLLBACK
+  [1m[36m (0.5ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.6ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.6ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.6ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Insert (0.9ms)[0m  INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:57', '2014-01-27 12:47:57', 980190962)
+  [1m[36mFixture Insert (1.1ms)[0m  [1mINSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:57', '2014-01-27 12:47:57', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_admin_users_on_email': INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:57', '2014-01-27 12:47:57', 298486374)
+  [1m[35m (44.8ms)[0m  ROLLBACK
+  [1m[36m (0.5ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.5ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.5ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.8ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Insert (0.7ms)[0m  INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:57', '2014-01-27 12:47:57', 980190962)
+  [1m[36mFixture Insert (1.3ms)[0m  [1mINSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:57', '2014-01-27 12:47:57', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_admin_users_on_email': INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:57', '2014-01-27 12:47:57', 298486374)
+  [1m[35m (44.8ms)[0m  ROLLBACK
+  [1m[36m (0.4ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.4ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.3ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.6ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Insert (0.8ms)[0m  INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:57', '2014-01-27 12:47:57', 980190962)
+  [1m[36mFixture Insert (1.4ms)[0m  [1mINSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:57', '2014-01-27 12:47:57', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_admin_users_on_email': INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:57', '2014-01-27 12:47:57', 298486374)
+  [1m[35m (47.4ms)[0m  ROLLBACK
+  [1m[36m (0.4ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.4ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.3ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.8ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Insert (0.8ms)[0m  INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:57', '2014-01-27 12:47:57', 980190962)
+  [1m[36mFixture Insert (1.3ms)[0m  [1mINSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:57', '2014-01-27 12:47:57', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_admin_users_on_email': INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 12:47:57', '2014-01-27 12:47:57', 298486374)
+  [1m[35m (46.4ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT `users`.* FROM `users` ORDER BY `users`.`id` DESC LIMIT 1[0m
+  [1m[35mUser Load (1.0ms)[0m  SELECT `users`.* FROM `users` ORDER BY `users`.`id` DESC LIMIT 1
+  [1m[36m (408.7ms)[0m  [1mDROP DATABASE IF EXISTS `project-2_test`[0m
+  [1m[35m (0.7ms)[0m  CREATE DATABASE `project-2_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (85.5ms)[0m  [1mCREATE TABLE `admin_users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (153.2ms)[0m  CREATE UNIQUE INDEX `index_admin_users_on_email` USING btree ON `admin_users` (`email`) 
+  [1m[36m (142.2ms)[0m  [1mCREATE UNIQUE INDEX `index_admin_users_on_reset_password_token` USING btree ON `admin_users` (`reset_password_token`) [0m
+  [1m[35m (61.7ms)[0m  CREATE TABLE `attendances` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `event_id` int(11), `created_at` datetime, `updated_at` datetime, `state` varchar(255)) ENGINE=InnoDB
+  [1m[36m (84.9ms)[0m  [1mCREATE TABLE `attendences` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `event_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (60.6ms)[0m  CREATE TABLE `events` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `start_date` datetime, `start_time` datetime, `location` varchar(255), `agenda` text, `address` text, `organizer_id` int(11), `created_at` datetime, `updated_at` datetime, `slug` varchar(255)) ENGINE=InnoDB
+  [1m[36m (84.4ms)[0m  [1mCREATE TABLE `friendly_id_slugs` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `slug` varchar(255) NOT NULL, `sluggable_id` int(11) NOT NULL, `sluggable_type` varchar(40), `scope` varchar(255), `created_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (153.8ms)[0m  CREATE UNIQUE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`, `scope`) 
+  [1m[36m (142.1ms)[0m  [1mCREATE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`) [0m
+  [1m[35m (142.0ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_sluggable_id` USING btree ON `friendly_id_slugs` (`sluggable_id`) 
+  [1m[36m (153.0ms)[0m  [1mCREATE INDEX `index_friendly_id_slugs_on_sluggable_type` USING btree ON `friendly_id_slugs` (`sluggable_type`) [0m
+  [1m[35m (106.5ms)[0m  CREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `event_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (143.7ms)[0m  [1mCREATE INDEX `index_taggings_on_event_id` USING btree ON `taggings` (`event_id`) [0m
+  [1m[35m (540.9ms)[0m  CREATE INDEX `index_taggings_on_tag_id` USING btree ON `taggings` (`tag_id`) 
+  [1m[36m (84.4ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (61.1ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (131.6ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) [0m
+  [1m[35m (142.4ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) 
+  [1m[36m (70.4ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (176.2ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36m (0.6ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (41.3ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130818052628')
+  [1m[36m (43.7ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130818052216')[0m
+  [1m[35m (43.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130811114749')
+  [1m[36m (43.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130811114714')[0m
+  [1m[35m (43.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130811080811')
+  [1m[36m (43.7ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130811083313')[0m
+  [1m[35m (43.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130810081757')
+  [1m[36m (43.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130811083714')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.9ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.6ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.3ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.7ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Insert (0.8ms)[0m  INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:14', '2014-01-27 13:25:14', 980190962)
+  [1m[36mFixture Insert (1.6ms)[0m  [1mINSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:14', '2014-01-27 13:25:14', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_admin_users_on_email': INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:14', '2014-01-27 13:25:14', 298486374)
+  [1m[35m (40.3ms)[0m  ROLLBACK
+  [1m[36m (0.5ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.5ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.4ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:14', '2014-01-27 13:25:14', 980190962)
+  [1m[36mFixture Insert (1.1ms)[0m  [1mINSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:14', '2014-01-27 13:25:14', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_admin_users_on_email': INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:14', '2014-01-27 13:25:14', 298486374)
+  [1m[35m (45.6ms)[0m  ROLLBACK
+  [1m[36m (0.4ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.4ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.4ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.7ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Insert (0.7ms)[0m  INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:14', '2014-01-27 13:25:14', 980190962)
+  [1m[36mFixture Insert (1.0ms)[0m  [1mINSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:14', '2014-01-27 13:25:14', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_admin_users_on_email': INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:14', '2014-01-27 13:25:14', 298486374)
+  [1m[35m (60.8ms)[0m  ROLLBACK
+  [1m[36m (0.4ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.5ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.4ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:14', '2014-01-27 13:25:14', 980190962)
+  [1m[36mFixture Insert (0.9ms)[0m  [1mINSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:14', '2014-01-27 13:25:14', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_admin_users_on_email': INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:14', '2014-01-27 13:25:14', 298486374)
+  [1m[35m (38.3ms)[0m  ROLLBACK
+  [1m[36m (0.4ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.7ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.3ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.6ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:14', '2014-01-27 13:25:14', 980190962)
+  [1m[36mFixture Insert (1.0ms)[0m  [1mINSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:14', '2014-01-27 13:25:14', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_admin_users_on_email': INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:14', '2014-01-27 13:25:14', 298486374)
+  [1m[35m (45.9ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.5ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (1.7ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:15', '2014-01-27 13:25:15', 980190962)
+  [1m[36mFixture Insert (2.7ms)[0m  [1mINSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:15', '2014-01-27 13:25:15', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_admin_users_on_email': INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:15', '2014-01-27 13:25:15', 298486374)
+  [1m[35m (40.4ms)[0m  ROLLBACK
+  [1m[36m (0.4ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.5ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.3ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:15', '2014-01-27 13:25:15', 980190962)
+  [1m[36mFixture Insert (0.8ms)[0m  [1mINSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:15', '2014-01-27 13:25:15', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_admin_users_on_email': INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:15', '2014-01-27 13:25:15', 298486374)
+  [1m[35m (39.9ms)[0m  ROLLBACK
+  [1m[36m (0.4ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.5ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.3ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:15', '2014-01-27 13:25:15', 980190962)
+  [1m[36mFixture Insert (0.9ms)[0m  [1mINSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:15', '2014-01-27 13:25:15', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_admin_users_on_email': INSERT INTO `admin_users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:25:15', '2014-01-27 13:25:15', 298486374)
+  [1m[35m (61.2ms)[0m  ROLLBACK
+  [1m[36m (0.4ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[36m (418.9ms)[0m  [1mDROP DATABASE IF EXISTS `project-2_test`[0m
+  [1m[35m (1.1ms)[0m  CREATE DATABASE `project-2_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (72.3ms)[0m  [1mCREATE TABLE `admin_users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (186.7ms)[0m  CREATE UNIQUE INDEX `index_admin_users_on_email` USING btree ON `admin_users` (`email`) 
+  [1m[36m (142.3ms)[0m  [1mCREATE UNIQUE INDEX `index_admin_users_on_reset_password_token` USING btree ON `admin_users` (`reset_password_token`) [0m
+  [1m[35m (73.7ms)[0m  CREATE TABLE `attendances` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `event_id` int(11), `created_at` datetime, `updated_at` datetime, `state` varchar(255)) ENGINE=InnoDB
+  [1m[36m (73.5ms)[0m  [1mCREATE TABLE `attendences` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `event_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (72.1ms)[0m  CREATE TABLE `events` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `start_date` datetime, `start_time` datetime, `location` varchar(255), `agenda` text, `address` text, `organizer_id` int(11), `created_at` datetime, `updated_at` datetime, `slug` varchar(255)) ENGINE=InnoDB
+  [1m[36m (74.2ms)[0m  [1mCREATE TABLE `friendly_id_slugs` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `slug` varchar(255) NOT NULL, `sluggable_id` int(11) NOT NULL, `sluggable_type` varchar(40), `scope` varchar(255), `created_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (153.1ms)[0m  CREATE UNIQUE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`, `scope`) 
+  [1m[36m (153.6ms)[0m  [1mCREATE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`) [0m
+  [1m[35m (153.6ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_sluggable_id` USING btree ON `friendly_id_slugs` (`sluggable_id`) 
+  [1m[36m (152.9ms)[0m  [1mCREATE INDEX `index_friendly_id_slugs_on_sluggable_type` USING btree ON `friendly_id_slugs` (`sluggable_type`) [0m
+  [1m[35m (349.3ms)[0m  CREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `event_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (154.3ms)[0m  [1mCREATE INDEX `index_taggings_on_event_id` USING btree ON `taggings` (`event_id`) [0m
+  [1m[35m (153.6ms)[0m  CREATE INDEX `index_taggings_on_tag_id` USING btree ON `taggings` (`tag_id`) 
+  [1m[36m (71.8ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (72.3ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (142.8ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) [0m
+  [1m[35m (131.1ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) 
+  [1m[36m (71.6ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (242.4ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36m (1.0ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (41.2ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130818052628')
+  [1m[36m (43.7ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130818052216')[0m
+  [1m[35m (44.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130811114749')
+  [1m[36m (43.6ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130811114714')[0m
+  [1m[35m (44.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130811080811')
+  [1m[36m (43.6ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130811083313')[0m
+  [1m[35m (44.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130810081757')
+  [1m[36m (43.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130811083714')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.6ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.7ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.5ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.6ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Delete (0.6ms)[0m  DELETE FROM `attendances`
+  [1m[36mFixture Insert (0.8ms)[0m  [1mINSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.7ms)[0m  INSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36mFixture Delete (0.6ms)[0m  [1mDELETE FROM `events`[0m
+  [1m[35mFixture Insert (0.8ms)[0m  INSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.8ms)[0m  [1mINSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM `taggings`
+  [1m[36mFixture Insert (0.9ms)[0m  [1mINSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.7ms)[0m  INSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM `tags`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.9ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36m (33.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.6ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.4ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM `admin_users`
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM `attendances`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+  [1m[35mFixture Delete (0.9ms)[0m  DELETE FROM `events`
+  [1m[36mFixture Insert (0.7ms)[0m  [1mINSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.8ms)[0m  INSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36mFixture Delete (0.7ms)[0m  [1mDELETE FROM `taggings`[0m
+  [1m[35mFixture Insert (0.8ms)[0m  INSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.9ms)[0m  [1mINSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+  [1m[35mFixture Delete (0.8ms)[0m  DELETE FROM `tags`
+  [1m[36mFixture Insert (0.6ms)[0m  [1mINSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.9ms)[0m  INSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36mFixture Delete (0.6ms)[0m  [1mDELETE FROM `users`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.8ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[35m (38.1ms)[0m  ROLLBACK
+  [1m[36m (0.6ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.8ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.4ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `attendances`
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM `events`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+  [1m[35mFixture Delete (0.6ms)[0m  DELETE FROM `taggings`
+  [1m[36mFixture Insert (0.7ms)[0m  [1mINSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM `tags`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.8ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36m (45.4ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.5ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.5ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.6ms)[0m  DELETE FROM `admin_users`
+  [1m[36mFixture Delete (0.8ms)[0m  [1mDELETE FROM `attendances`[0m
+  [1m[35mFixture Insert (0.8ms)[0m  INSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.9ms)[0m  [1mINSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+  [1m[35mFixture Delete (0.7ms)[0m  DELETE FROM `events`
+  [1m[36mFixture Insert (0.9ms)[0m  [1mINSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.7ms)[0m  INSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36mFixture Delete (0.8ms)[0m  [1mDELETE FROM `taggings`[0m
+  [1m[35mFixture Insert (0.9ms)[0m  INSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.8ms)[0m  [1mINSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+  [1m[35mFixture Delete (0.7ms)[0m  DELETE FROM `tags`
+  [1m[36mFixture Insert (1.0ms)[0m  [1mINSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.7ms)[0m  INSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36mFixture Delete (0.7ms)[0m  [1mDELETE FROM `users`[0m
+  [1m[35mFixture Insert (0.8ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (1.1ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[35m (48.9ms)[0m  ROLLBACK
+  [1m[36m (0.4ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.4ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.5ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.6ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Delete (0.6ms)[0m  DELETE FROM `attendances`
+  [1m[36mFixture Insert (0.9ms)[0m  [1mINSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.7ms)[0m  INSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36mFixture Delete (0.6ms)[0m  [1mDELETE FROM `events`[0m
+  [1m[35mFixture Insert (0.7ms)[0m  INSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.9ms)[0m  [1mINSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `taggings`
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM `tags`[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.8ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (1.2ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36m (65.5ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.4ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM `admin_users`
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM `attendances`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM `events`
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM `taggings`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM `tags`
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM `users`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.7ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[35m (38.0ms)[0m  ROLLBACK
+  [1m[36m (0.5ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.6ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.4ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM `attendances`
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM `events`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM `taggings`
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM `tags`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.6ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.8ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36m (45.6ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.5ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.6ms)[0m  DELETE FROM `admin_users`
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM `attendances`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `events`
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM `taggings`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `tags`
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:45:27', '2014-01-27 13:45:27', 980190962)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:45:27', '2014-01-27 13:45:27', 298486374)
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM `users`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:28', '2014-01-27 13:45:28', 980190962)
+  [1m[36mFixture Insert (0.8ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:28', '2014-01-27 13:45:28', 298486374)[0m
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2014-01-27 13:45:28', '2014-01-27 13:45:28', 298486374)
+  [1m[35m (47.0ms)[0m  ROLLBACK
+  [1m[36m (0.5ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[36m (403.9ms)[0m  [1mDROP DATABASE IF EXISTS `project-2_test`[0m
+  [1m[35m (1.1ms)[0m  CREATE DATABASE `project-2_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (83.1ms)[0m  [1mCREATE TABLE `admin_users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (153.1ms)[0m  CREATE UNIQUE INDEX `index_admin_users_on_email` USING btree ON `admin_users` (`email`) 
+  [1m[36m (164.2ms)[0m  [1mCREATE UNIQUE INDEX `index_admin_users_on_reset_password_token` USING btree ON `admin_users` (`reset_password_token`) [0m
+  [1m[35m (83.5ms)[0m  CREATE TABLE `attendances` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `event_id` int(11), `created_at` datetime, `updated_at` datetime, `state` varchar(255)) ENGINE=InnoDB
+  [1m[36m (84.2ms)[0m  [1mCREATE TABLE `attendences` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `event_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (72.2ms)[0m  CREATE TABLE `events` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `start_date` datetime, `start_time` datetime, `location` varchar(255), `agenda` text, `address` text, `organizer_id` int(11), `created_at` datetime, `updated_at` datetime, `slug` varchar(255)) ENGINE=InnoDB
+  [1m[36m (73.2ms)[0m  [1mCREATE TABLE `friendly_id_slugs` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `slug` varchar(255) NOT NULL, `sluggable_id` int(11) NOT NULL, `sluggable_type` varchar(40), `scope` varchar(255), `created_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (186.6ms)[0m  CREATE UNIQUE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`, `scope`) 
+  [1m[36m (143.7ms)[0m  [1mCREATE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`) [0m
+  [1m[35m (164.3ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_sluggable_id` USING btree ON `friendly_id_slugs` (`sluggable_id`) 
+  [1m[36m (163.9ms)[0m  [1mCREATE INDEX `index_friendly_id_slugs_on_sluggable_type` USING btree ON `friendly_id_slugs` (`sluggable_type`) [0m
+  [1m[35m (84.7ms)[0m  CREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `event_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (153.9ms)[0m  [1mCREATE INDEX `index_taggings_on_event_id` USING btree ON `taggings` (`event_id`) [0m
+  [1m[35m (153.5ms)[0m  CREATE INDEX `index_taggings_on_tag_id` USING btree ON `taggings` (`tag_id`) 
+  [1m[36m (72.6ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (84.0ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (153.2ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) [0m
+  [1m[35m (164.6ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) 
+  [1m[36m (83.4ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (197.5ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36m (0.7ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (41.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130818052628')
+  [1m[36m (43.3ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130818052216')[0m
+  [1m[35m (44.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130811114749')
+  [1m[36m (43.7ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130811114714')[0m
+  [1m[35m (44.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130811080811')
+  [1m[36m (32.4ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130811083313')[0m
+  [1m[35m (32.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130810081757')
+  [1m[36m (34.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130811083714')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.8ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.6ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.5ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.6ms)[0m  [1mDELETE FROM `admin_users`[0m
+  [1m[35mFixture Delete (0.6ms)[0m  DELETE FROM `attendances`
+  [1m[36mFixture Insert (0.7ms)[0m  [1mINSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:48:04', '2014-01-27 13:48:04', 980190962)[0m
+  [1m[35mFixture Insert (0.7ms)[0m  INSERT INTO `attendances` (`user_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (1, 1, '2014-01-27 13:48:04', '2014-01-27 13:48:04', 298486374)
+  [1m[36mFixture Delete (0.6ms)[0m  [1mDELETE FROM `events`[0m
+  [1m[35mFixture Insert (0.9ms)[0m  INSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:48:04', '2014-01-27 13:48:04', 980190962)
+  [1m[36mFixture Insert (0.8ms)[0m  [1mINSERT INTO `events` (`title`, `start_date`, `start_time`, `location`, `agenda`, `address`, `organizer_id`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-11 16:08:11', '2013-08-11 16:08:11', 'MyString', 'MyText', 'MyText', 1, '2014-01-27 13:48:04', '2014-01-27 13:48:04', 298486374)[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM `taggings`
+  [1m[36mFixture Insert (0.6ms)[0m  [1mINSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:48:04', '2014-01-27 13:48:04', 980190962)[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `taggings` (`tag_id`, `event_id`, `created_at`, `updated_at`, `id`) VALUES (NULL, NULL, '2014-01-27 13:48:04', '2014-01-27 13:48:04', 298486374)
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM `tags`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:48:04', '2014-01-27 13:48:04', 980190962)
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `tags` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2014-01-27 13:48:04', '2014-01-27 13:48:04', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `users`
+  [1m[36m (38.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+-----------------------------------------------------------------
+EventsControllerTest: test_Should_allow_only_event_owners_to_edit
+-----------------------------------------------------------------
+  [1m[35mEvent Load (1.2ms)[0m  SELECT `events`.* FROM `events` WHERE `events`.`id` = 980190962 LIMIT 1
+Processing by EventsController#edit as HTML
+  Parameters: {"user_id"=>"1", "id"=>"980190962"}
+  [1m[36mEvent Load (1.2ms)[0m  [1mSELECT `events`.* FROM `events` WHERE `events`.`slug` = '980190962' ORDER BY `events`.`id` ASC LIMIT 1[0m
+  [1m[35mEvent Load (0.9ms)[0m  SELECT `events`.* FROM `events` WHERE `events`.`id` = 980190962 LIMIT 1
+Completed 500 Internal Server Error in 71ms
+  [1m[36m (0.7ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+----------------------------------------------
+EventsControllerTest: test_should_create_event
+----------------------------------------------
+  [1m[36mEvent Load (1.0ms)[0m  [1mSELECT `events`.* FROM `events` WHERE `events`.`id` = 980190962 LIMIT 1[0m
+  [1m[35m (0.9ms)[0m  SELECT COUNT(*) FROM `events`
+Processing by EventsController#create as HTML
+  Parameters: {"event"=>{"address"=>"MyText", "agenda"=>"MyText", "location"=>"MyString", "organizer_id"=>"1", "start_date"=>"2013-08-11 16:08:11 UTC", "start_time"=>"2013-08-11 16:08:11 UTC", "title"=>"MyString"}}
+Completed 500 Internal Server Error in 1ms
+  [1m[36m (0.6ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+-----------------------------------------------
+EventsControllerTest: test_should_destroy_event
+-----------------------------------------------
+  [1m[36mEvent Load (1.0ms)[0m  [1mSELECT `events`.* FROM `events` WHERE `events`.`id` = 980190962 LIMIT 1[0m
+  [1m[35m (0.8ms)[0m  SELECT COUNT(*) FROM `events`
+Processing by EventsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mEvent Load (1.0ms)[0m  [1mSELECT `events`.* FROM `events` WHERE `events`.`slug` = '980190962' ORDER BY `events`.`id` ASC LIMIT 1[0m
+  [1m[35mEvent Load (0.9ms)[0m  SELECT `events`.* FROM `events` WHERE `events`.`id` = 980190962 LIMIT 1
+Completed 500 Internal Server Error in 10ms
+  [1m[36m (0.6ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+------------------------------------------
+EventsControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[36mEvent Load (0.9ms)[0m  [1mSELECT `events`.* FROM `events` WHERE `events`.`id` = 980190962 LIMIT 1[0m
+Processing by EventsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[35mEvent Load (1.0ms)[0m  SELECT `events`.* FROM `events` WHERE `events`.`slug` = '980190962' ORDER BY `events`.`id` ASC LIMIT 1
+  [1m[36mEvent Load (1.1ms)[0m  [1mSELECT `events`.* FROM `events` WHERE `events`.`id` = 980190962 LIMIT 1[0m
+Completed 500 Internal Server Error in 10ms
+  [1m[35m (0.5ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+EventsControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[35mEvent Load (0.9ms)[0m  SELECT `events`.* FROM `events` WHERE `events`.`id` = 980190962 LIMIT 1
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.8ms)[0m  [1mSELECT `events`.* FROM `events`[0m
+  [1m[35mUser Load (1.1ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+Completed 500 Internal Server Error in 449ms
+  [1m[36m (0.5ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+-----------------------------------------
+EventsControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[36mEvent Load (0.9ms)[0m  [1mSELECT `events`.* FROM `events` WHERE `events`.`id` = 980190962 LIMIT 1[0m
+Processing by EventsController#new as HTML
+Completed 500 Internal Server Error in 1ms
+  [1m[35m (0.6ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+EventsControllerTest: test_should_show_event
+--------------------------------------------
+  [1m[35mEvent Load (1.0ms)[0m  SELECT `events`.* FROM `events` WHERE `events`.`id` = 980190962 LIMIT 1
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mEvent Load (1.2ms)[0m  [1mSELECT `events`.* FROM `events` WHERE `events`.`slug` = '980190962' ORDER BY `events`.`id` ASC LIMIT 1[0m
+  [1m[35mEvent Load (0.7ms)[0m  SELECT `events`.* FROM `events` WHERE `events`.`id` = 980190962 LIMIT 1
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mTag Load (1.2ms)[0m  SELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.`id` = `taggings`.`tag_id` WHERE `taggings`.`event_id` = 980190962
+Completed 500 Internal Server Error in 403ms
+  [1m[36m (0.6ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+----------------------------------------------
+EventsControllerTest: test_should_update_event
+----------------------------------------------
+  [1m[36mEvent Load (1.0ms)[0m  [1mSELECT `events`.* FROM `events` WHERE `events`.`id` = 980190962 LIMIT 1[0m
+Processing by EventsController#update as HTML
+  Parameters: {"event"=>{"address"=>"MyText", "agenda"=>"MyText", "location"=>"MyString", "organizer_id"=>"1", "start_date"=>"2013-08-11 16:08:11 UTC", "start_time"=>"2013-08-11 16:08:11 UTC", "title"=>"MyString"}, "id"=>"980190962"}
+  [1m[35mEvent Load (1.1ms)[0m  SELECT `events`.* FROM `events` WHERE `events`.`slug` = '980190962' ORDER BY `events`.`id` ASC LIMIT 1
+  [1m[36mEvent Load (0.8ms)[0m  [1mSELECT `events`.* FROM `events` WHERE `events`.`id` = 980190962 LIMIT 1[0m
+Completed 500 Internal Server Error in 10ms
+  [1m[35m (0.4ms)[0m  ROLLBACK

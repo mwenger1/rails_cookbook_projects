@@ -1,0 +1,8 @@
+%p#notice= notice
+%p
+  = @page.title
+%p
+  = @page.body.html_safe
+= link_to 'Edit', edit_page_path(@page), :class=>"btn btn-primary"
+
+\#{link_to 'Back', pages_path, :class=>"btn btn-primary"}

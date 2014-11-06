@@ -1,0 +1,22 @@
+<h2><%= @organization %></h3>
+
+
+  <tbody>
+    <% @restaurants.each do |restaurant| %>
+      <tr>
+        <td><%= restaurant.name %></td>
+        <td><%= restaurant.description %></td>
+        
+        <td><%= link_to 'Show', restaurant, :class=>"btn btn-default" %></td>
+        <% if current_user.has_role? "owner"%>
+	 <td><%= link_to 'Edit', edit_restaurant_path(restaurant), :class=>"btn btn-default" %></td>
+	 <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-default" %></td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br/><br/>
+
+<%= link_to 'Add A Restaurant', new_restaurant_path, :class=>"btn btn-default" %>

@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @site_detail.title
+%p
+  %b Organization:
+  = @site_detail.organization
+%p
+  %b Address:
+  = @site_detail.address
+%p
+  %b Facebook:
+  = @site_detail.facebook
+%p
+  %b Twitter:
+  = @site_detail.twitter
+%p
+  %b Google plus:
+  = @site_detail.google_plus
+%p
+  %b Skype:
+  = @site_detail.skype
+%p
+  %b Linkedin:
+  = @site_detail.linkedin
+%p
+  %b Google analytics:
+  = @site_detail.google_analytics
+%p
+  %b Telephone:
+  = @site_detail.telephone
+
+= link_to 'Edit', edit_site_detail_path(@site_detail)
+\|
+= link_to 'Back', site_details_path

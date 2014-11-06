@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: Curry
+
+two:
+  name: Dessert
+
+three:
+  name: Sides
+
+four:
+  name: Breakfast

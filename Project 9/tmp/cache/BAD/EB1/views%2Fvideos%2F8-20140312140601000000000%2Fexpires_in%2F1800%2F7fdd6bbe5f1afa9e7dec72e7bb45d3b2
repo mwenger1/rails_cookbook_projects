@@ -1,0 +1,11 @@
+o: ActiveSupport::Cache::Entry:@valueI"]   <div class="row">
+    <div class="col-lg-8">
+      <h3>Nursary Rhymes</h3>
+      <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="640" height="264"
+      data-setup="{}">
+	<source src="/uploads/video/video/8/mp4_mymother.mp4" type='video/mp4' />
+      </video>
+      <br/>
+      <p>test</p>
+    </div>
+:ET:@created_atf1394633162.2826693:@expires_in0

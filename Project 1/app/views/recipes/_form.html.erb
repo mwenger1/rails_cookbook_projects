@@ -1,0 +1,64 @@
+<%= form_for(@recipe) do |f| %>
+  <% if @recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+      <% @recipe.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <form>
+  <fieldset>
+    <div class="form-group">
+      <label>Title</label>
+      <%= f.text_field :title, :placeholder => 'title', :class=>"form-control" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :food_preference %><br>
+      <%= f.select(:food_preference_id, options_from_collection_for_select(FoodPreference.all, :id, :name), {:prompt => 'Please Choose'}, :class => "form-control")  %>
+    </div>
+  
+    <div class="form-group">
+      <%= f.label :food_type %><br>
+      <%= f.select(:food_type_id, options_from_collection_for_select(FoodType.all, :id, :name), {:prompt => 'Please Choose'}, :class => "form-control")  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :cuisine %><br>
+      <%= f.select(:cuisine_id, options_from_collection_for_select(Cuisine.all, :id, :name), {:prompt => 'Please Choose'}, :class => "form-control")  %>
+    </div>
+    
+    <div class="form-group">
+      <label for="exampleInputPassword">Servings</label>
+      <%= f.number_field :servings, :class=>"form-control" %><span>People</span>     
+    </div>
+
+     <div class="form-group">
+      <label for="exampleInputPassword">Cooking Time</label>
+      <%= f.number_field :servings, :class=>"form-control" %><span>Minutes</span>     
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :difficulty_level %><br>
+      <%=f.select :difficulty_level, Recipe::DIFFICULTY,{} , :class => "form-control"%>
+    </div>
+    
+      <div class="form-group">
+	     <%= f.label :ingredients %><br>
+        <%= f.text_area :ingredients, :class => "form-control" %>
+       </div>
+
+      <div class="form-group">
+	     <%= f.label :procedure %><br>
+        <%= f.text_area :procedure, :class => "form-control" %>
+      </div>
+       
+       <%= f.submit :class=>"btn btn-default" %>
+  
+  </fieldset>
+</form>
+<% end %>

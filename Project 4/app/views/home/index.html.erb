@@ -1,0 +1,55 @@
+       <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <%= image_tag "https://farm3.staticflickr.com/2402/2407509566_d82c8cc536_o.jpg"%>
+          <div class="container">
+            <div class="carousel-caption">
+              <p>Build and Manage Menus With Ease</p>
+              <h5>Image Source : <a href="https://secure.flickr.com/photos/joshua/" target="blank">Joshua Rappeneker</a></h5>
+              <p><a class="btn btn-large btn-primary" href="#">Sign up today</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <%= image_tag "https://farm4.staticflickr.com/3643/3492719750_aec3c68e0c_o.jpg"%>
+          <div class="container">
+            <div class="carousel-caption">
+              <p>Build and Manage Menus With Ease</p>
+              <h5>Image Source : <a href="https://secure.flickr.com/photos/orangetaki/" target="blank">Taki Lau</a></h5>
+              <p><a class="btn btn-large btn-primary" href="#">Sign up today</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.carousel -->
+
+      
+      <div class="page-header">
+        <h2>Plans</h2>
+      </div>
+      
+      <div class="row">
+       <% @plans.each do |plan|%>
+      	<div class="col-sm-4">
+          <div class="list-group">
+            <a href="#" class="list-group-item active">
+              <%= plan.name %> - <%= number_to_currency(plan.price)%> / Month
+            </a>
+            <a href="#" class="list-group-item"><%= plan.restaurants %> Restaurant</a>
+            <a href="#" class="list-group-item"><%= plan.tables %> tables / Restaurant</a>
+            <a href="#" class="list-group-item"><%= plan.menu_items %> Menu Items / Restaurant</a>
+            <a href="#" class="list-group-item"><%= plan.storage %> GB storage</a>
+            <%= link_to new_user_registration_path(:plan_id => plan.id),  :class=>"list-group-item" do%><button class="btn btn-success">Sign Up</button><%end%>
+          </div>
+         </div><!-- /.col-sm-4 -->
+        <% end %>
+      </div> 
+        

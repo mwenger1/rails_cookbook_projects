@@ -1,0 +1,30 @@
+%h3 Manage parts
+
+%table.table
+  %tr
+    %th Title
+    %th Part type
+    %th Content
+    %th Meta
+    %th
+    %th
+    %th
+
+  - @parts.each do |part|
+    %tr
+      %td= part.title
+      %td= part.part_type_id
+      %td= part.content.html_safe rescue nil
+      %td= part.meta
+      %td
+        = link_to part, :class=>"btn btn-info", :target=>"blank" do
+          %i.fa.fa-external-link-square
+      %td
+        = link_to edit_part_path(part), :class=>"btn btn-primary" do
+          %i.fa.fa-pencil-square-o
+      %td
+        = link_to part, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger" do
+          %i.fa.fa-trash-o.fa-lg
+%br
+
+= link_to 'Add Part', new_part_path, :class=>"btn btn-default"

@@ -1,0 +1,43 @@
+    <% if flash[:notice] %>
+    <div class="notice alert alert-info"><%= flash[:notice] %></div>
+  <% end %>
+   <div id="container">
+    <div id="main" role="main">
+      <ul id="tiles">
+      <% @search.each do |s|%>
+	<%if s.class.name == "Board" %>
+	  <li><p><%= s.title%><br/><%= s.description%><br/><%= s.user.email%></p></li>
+	<%elsif s.class.name == "Pin" %>
+        <!-- These are our grid blocks -->
+	  <li><%=image_tag s.image.url, :width => "200", :height => "200"%><p><%= s.board.title%></p></li>
+        <!-- End of grid blocks -->
+      
+	<%end%>
+      <%end%>
+      </ul>
+    </div>
+   </div>
+ <script type="text/javascript">
+    (function ($){
+      var handler = $('#tiles li');
+      
+      handler.wookmark({
+          // Prepare layout options.
+          autoResize: true, // This will auto-update the layout when the browser window is resized.
+          container: $('#main'), // Optional, used for some extra CSS styling
+          offset: 5, // Optional, the distance between grid items
+          outerOffset: 10, // Optional, the distance to the containers border
+          itemWidth: 210 // Optional, the width of a grid item
+      });
+      
+      // Capture clicks on grid items.
+      handler.click(function(){
+        // Randomize the height of the clicked item.
+        var newHeight = $('img', this).height() + Math.round(Math.random() * 300 + 30);
+        $(this).css('height', newHeight+'px');
+
+        // Update the layout.
+        handler.wookmark();
+      });
+    })(jQuery);
+  </script>

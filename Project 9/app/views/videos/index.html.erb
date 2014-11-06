@@ -1,0 +1,17 @@
+    <div class="row">
+    <% @videos.each do |video| %>
+        <div class="col-lg-4">
+          <h3><%=link_to video.title, video %></h3>
+          <% video.video_screenshot%>
+          <p><%= image_tag display_screenshot(video.slug,video.id), :width => 200, :height => 150 %></p>
+          <p><%= link_to 'See this Video &raquo;'.html_safe ,video, :class=>"btn btn-success"%></p>
+        </div>
+    <%end%>
+    </div>
+    <% if user_signed_in?%>
+    <div class="row">
+      <div class="col-lg-4">
+	<%= link_to 'Upload Video', new_video_path, :class => 'btn btn-primary' %>
+       </div>
+     </div>
+    <% end %>

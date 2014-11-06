@@ -1,0 +1,34 @@
+!!!
+%html
+  %head
+    %title
+      = @page.title
+      | #{@site.title}
+    = stylesheet_link_tag "front"
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+    %link{href: "http://fonts.googleapis.com/css?family=Cherry+Swash", rel: "stylesheet", type: "text/css"}/
+    %link{href: "http://fonts.googleapis.com/css?family=Flamenco", rel: "stylesheet", type: "text/css"}/
+  %body
+    #container
+      #header
+        %p= image_tag @site.logo_url.to_s, :alt=>"#{@site.title}"
+        #menu
+          %ul
+            - @pages.each do |page|
+              %li= link_to page.title, page
+      #primary
+        %p Primary Sidebar
+      #content
+        %p= @page.body.html_safe
+      #secondary
+        %p Secondary Sidebar
+      #footer
+        %h3= @site.organization
+        %p
+          = link_to '<i class="fa fa-facebook"></i>'.html_safe, @site.facebook, :target=>"blank"
+          | #{link_to '<i class="fa fa-twitter"></i>'.html_safe, @site.twitter, :target=>"blank"} | #{link_to '<i class="fa fa-linkedin"></i>'.html_safe, @site.linkedin, :target=>"blank"} | #{link_to '<i class="fa fa-skype"></i>'.html_safe, @site.skype, :target=>"blank"}
+        %p
+          = @site.address
+          %br/
+          = @site.telephone

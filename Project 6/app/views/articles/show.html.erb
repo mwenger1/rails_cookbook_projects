@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h3><%= @article.title %></h3>
+  <%= "#{@article.impressionist_count} views so far!" %> <!--| <% if user_signed_in? %><%= @clicks %> clicks so far!<% end %>-->
+</p>
+
+<p>
+  <%= @article.body.html_safe %>
+</p>
+<% if user_signed_in? && (@article.user_id == current_user.id)%>
+<%= link_to 'Edit', edit_article_path(@article), :class=>"btn btn-primary" %> 
+<%= link_to 'Back', articles_path, :class=>"btn btn-default" %>
+<% end %>

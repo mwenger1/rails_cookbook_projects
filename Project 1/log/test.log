@@ -1,0 +1,780 @@
+  [1m[36m (0.6ms)[0m  [1mDROP DATABASE IF EXISTS `project-1_test`[0m
+  [1m[35m (0.3ms)[0m  CREATE DATABASE `project-1_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (107.8ms)[0m  [1mCREATE TABLE `posts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `type` varchar(255), `cuisines` varchar(255), `cooking_time` varchar(255), `difficulty_level` varchar(255), `category_id` int(11), `ingredients` text, `procedure` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (90.1ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36m (198.3ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) [0m
+  [1m[35m (0.3ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (43.2ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130803083558')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.6ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.3ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM `posts`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `posts` (`title`, `type`, `cuisines`, `cooking_time`, `difficulty_level`, `category_id`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`) VALUES ('MyString', NULL, 'MyString', 'MyString', 'MyString', 1, 'MyText', 'MyText', '2013-08-03 09:59:45', '2013-08-03 09:59:45', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `posts` (`title`, `type`, `cuisines`, `cooking_time`, `difficulty_level`, `category_id`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`) VALUES ('MyString', NULL, 'MyString', 'MyString', 'MyString', 1, 'MyText', 'MyText', '2013-08-03 09:59:45', '2013-08-03 09:59:45', 298486374)[0m
+  [1m[35m (51.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+-----------------------------------------
+HomeControllerTest: test_should_get_index
+-----------------------------------------
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 6112ms (Views: 6110.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------
+PostsControllerTest: test_should_create_post
+--------------------------------------------
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 980190962 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `posts`
+Processing by PostsController#create as HTML
+  Parameters: {"post"=>{"category_id"=>"1", "cooking_time"=>"MyString", "cuisines"=>"MyString", "difficulty_level"=>"MyString", "ingredients"=>"MyText", "procedure"=>"MyText", "title"=>"MyString", "type"=>nil}}
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO `posts` (`category_id`, `cooking_time`, `created_at`, `cuisines`, `difficulty_level`, `ingredients`, `procedure`, `title`, `updated_at`) VALUES (1, 'MyString', '2013-08-03 09:59:52', 'MyString', 'MyString', 'MyText', 'MyText', 'MyString', '2013-08-03 09:59:52')
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/posts/980190963
+Completed 302 Found in 38ms (ActiveRecord: 1.1ms)
+  [1m[35m (0.8ms)[0m  SELECT COUNT(*) FROM `posts`
+  [1m[36m (47.8ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+---------------------------------------------
+PostsControllerTest: test_should_destroy_post
+---------------------------------------------
+  [1m[36mPost Load (0.7ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 980190962 LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM `posts`
+Processing by PostsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 980190962 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mDELETE FROM `posts` WHERE `posts`.`id` = 980190962[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/posts
+Completed 302 Found in 8ms (ActiveRecord: 1.4ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `posts`[0m
+  [1m[35m (40.5ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+PostsControllerTest: test_should_get_edit
+-----------------------------------------
+  [1m[35mPost Load (0.5ms)[0m  SELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 980190962 LIMIT 1
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 980190962 LIMIT 1[0m
+  Rendered posts/_form.html.erb (133.3ms)
+Completed 200 OK in 154ms (Views: 149.9ms | ActiveRecord: 0.5ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+PostsControllerTest: test_should_get_index
+------------------------------------------
+  [1m[35mPost Load (0.4ms)[0m  SELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 980190962 LIMIT 1
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT `posts`.* FROM `posts`[0m
+Completed 200 OK in 12ms (Views: 10.5ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+----------------------------------------
+PostsControllerTest: test_should_get_new
+----------------------------------------
+  [1m[35mPost Load (0.5ms)[0m  SELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 980190962 LIMIT 1
+Processing by PostsController#new as HTML
+  Rendered posts/_form.html.erb (17.0ms)
+Completed 200 OK in 27ms (Views: 24.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+------------------------------------------
+PostsControllerTest: test_should_show_post
+------------------------------------------
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 980190962 LIMIT 1[0m
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[35mPost Load (0.4ms)[0m  SELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 980190962 LIMIT 1
+Completed 200 OK in 10ms (Views: 7.2ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------
+PostsControllerTest: test_should_update_post
+--------------------------------------------
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 980190962 LIMIT 1[0m
+Processing by PostsController#update as HTML
+  Parameters: {"post"=>{"category_id"=>"1", "cooking_time"=>"MyString", "cuisines"=>"MyString", "difficulty_level"=>"MyString", "ingredients"=>"MyText", "procedure"=>"MyText", "title"=>"MyString", "type"=>nil}, "id"=>"980190962"}
+  [1m[35mPost Load (0.5ms)[0m  SELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 980190962 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/posts/980190962
+Completed 302 Found in 9ms (ActiveRecord: 0.9ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36m (109.7ms)[0m  [1mDROP DATABASE IF EXISTS `project-1_test`[0m
+  [1m[35m (0.8ms)[0m  CREATE DATABASE `project-1_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (89.5ms)[0m  [1mCREATE TABLE `food_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (101.2ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36m (198.5ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) [0m
+  [1m[35m (0.4ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (43.9ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130803103254')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.7ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.4ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.2ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-03 10:46:27', '2013-08-03 10:46:27', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-03 10:46:27', '2013-08-03 10:46:27', 298486374)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-03 10:46:27', '2013-08-03 10:46:27', 113629430)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-03 10:46:27', '2013-08-03 10:46:27', 281110143)[0m
+  [1m[35m (37.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+------------------------------------
+FoodTypeTest: test_create_food_types
+------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `food_types` (`created_at`, `updated_at`) VALUES ('2013-08-03 10:46:27', '2013-08-03 10:46:27')
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (41.8ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+HomeControllerTest: test_should_get_index
+-----------------------------------------
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 2104ms (Views: 2103.3ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+PostsControllerTest: test_should_create_post
+--------------------------------------------
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+PostsControllerTest: test_should_destroy_post
+---------------------------------------------
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+PostsControllerTest: test_should_get_edit
+-----------------------------------------
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+------------------------------------------
+PostsControllerTest: test_should_get_index
+------------------------------------------
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+----------------------------------------
+PostsControllerTest: test_should_get_new
+----------------------------------------
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+------------------------------------------
+PostsControllerTest: test_should_show_post
+------------------------------------------
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+PostsControllerTest: test_should_update_post
+--------------------------------------------
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+------------------------------------------------
+RecipesControllerTest: test_should_create_recipe
+------------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+RecipesControllerTest: test_should_destroy_recipe
+-------------------------------------------------
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+RecipesControllerTest: test_should_get_edit
+-------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+RecipesControllerTest: test_should_get_index
+--------------------------------------------
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+RecipesControllerTest: test_should_get_new
+------------------------------------------
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+RecipesControllerTest: test_should_show_recipe
+----------------------------------------------
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+------------------------------------------------
+RecipesControllerTest: test_should_update_recipe
+------------------------------------------------
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (101.6ms)[0m  [1mDROP DATABASE IF EXISTS `project-1_test`[0m
+  [1m[35m (0.5ms)[0m  CREATE DATABASE `project-1_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (105.2ms)[0m  [1mCREATE TABLE `food_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (90.6ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36m (198.9ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) [0m
+  [1m[35m (0.7ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (43.6ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130803103254')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.5ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.5ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.2ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-03 10:47:37', '2013-08-03 10:47:37', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-03 10:47:37', '2013-08-03 10:47:37', 298486374)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-03 10:47:37', '2013-08-03 10:47:37', 113629430)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-03 10:47:37', '2013-08-03 10:47:37', 281110143)[0m
+  [1m[35m (47.8ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+------------------------------------
+FoodTypeTest: test_create_food_types
+------------------------------------
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO `food_types` (`created_at`, `updated_at`) VALUES ('2013-08-03 10:47:37', '2013-08-03 10:47:37')
+  [1m[36m (0.4ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (38.0ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+HomeControllerTest: test_should_get_index
+-----------------------------------------
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 227ms (Views: 225.3ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (97.5ms)[0m  [1mDROP DATABASE IF EXISTS `project-1_test`[0m
+  [1m[35m (0.9ms)[0m  CREATE DATABASE `project-1_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (97.1ms)[0m  [1mCREATE TABLE `food_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (90.6ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36m (209.5ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) [0m
+  [1m[35m (0.6ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (31.5ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130803103254')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.7ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.4ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.3ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-03 10:54:43', '2013-08-03 10:54:43', 980190962)
+  [1m[36mFixture Insert (0.6ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-03 10:54:43', '2013-08-03 10:54:43', 298486374)[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-03 10:54:43', '2013-08-03 10:54:43', 113629430)
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-03 10:54:43', '2013-08-03 10:54:43', 281110143)[0m
+  [1m[35m (35.0ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+------------------------------------
+FoodTypeTest: test_create_food_types
+------------------------------------
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+-----------------------------------------
+HomeControllerTest: test_should_get_index
+-----------------------------------------
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 130ms (Views: 129.3ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36m (137.6ms)[0m  [1mDROP DATABASE IF EXISTS `project-1_test`[0m
+  [1m[35m (0.8ms)[0m  CREATE DATABASE `project-1_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (87.7ms)[0m  [1mCREATE TABLE `cuisines` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (85.9ms)[0m  CREATE TABLE `food_preferences` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (75.0ms)[0m  [1mCREATE TABLE `food_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (73.4ms)[0m  CREATE TABLE `recipes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `food_preference_id` int(11), `food_type_id` int(11), `cuisine_id` int(11), `servings` int(11), `cooking_time` int(11), `level_of_difficulty` varchar(255), `ingredients` text, `procedure` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (75.7ms)[0m  [1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(128) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (166.0ms)[0m  CREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) 
+  [1m[36m (176.1ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) [0m
+  [1m[35m (89.7ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36m (210.0ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) [0m
+  [1m[35m (47.1ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (40.3ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130803121424')[0m
+  [1m[35m (44.2ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130803110704')
+  [1m[36m (43.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130803113359')[0m
+  [1m[35m (44.2ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130803103254')
+  [1m[36m (44.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130803111845')[0m
+  [1m[35m (44.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130803115230')
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.5ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.4ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.2ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 113629430)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 281110143)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374, 64810937)
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+  [1m[36m (42.9ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.6ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.4ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 113629430)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 281110143)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374, 64810937)
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+  [1m[36m (46.5ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.4ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.2ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 113629430)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 281110143)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374, 64810937)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)[0m
+  [1m[35mFixture Insert (0.7ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+  [1m[36m (47.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.4ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 113629430)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 281110143)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374, 64810937)
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.6ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)[0m
+  [1m[35mFixture Insert (0.9ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+  [1m[36m (44.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.3ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 113629430)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 281110143)[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.8ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374, 64810937)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+  [1m[36m (32.6ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.3ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.2ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 113629430)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 281110143)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374, 64810937)
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+  [1m[36m (30.8ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.5ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.4ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.6ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+  [1m[36mFixture Delete (0.6ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 113629430)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 281110143)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374, 64810937)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+  [1m[36m (27.7ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.3ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (53.2ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.6ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)[0m
+  [1m[35mFixture Insert (0.7ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.7ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 113629430)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 281110143)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.6ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.7ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374, 64810937)
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 980190962)[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:44', '2013-08-05 15:38:44', 298486374)
+  [1m[36m (33.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.3ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.6ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 980190962)[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 298486374)[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 113629430)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 281110143)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 298486374, 64810937)
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:45', '2013-08-05 15:38:45', 980190962)[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:45', '2013-08-05 15:38:45', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:45', '2013-08-05 15:38:45', 298486374)
+  [1m[36m (29.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.2ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 980190962)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 298486374)
+  [1m[36mFixture Delete (0.6ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 298486374)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 113629430)
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 281110143)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.8ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 298486374, 64810937)
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:38:45', '2013-08-05 15:38:45', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:45', '2013-08-05 15:38:45', 980190962)[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:45', '2013-08-05 15:38:45', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:38:45', '2013-08-05 15:38:45', 298486374)
+  [1m[36m (29.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.7ms)[0m  [1mDROP DATABASE IF EXISTS `project-1_test`[0m
+  [1m[35m (0.3ms)[0m  CREATE DATABASE `project-1_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (120.7ms)[0m  [1mCREATE TABLE `cuisines` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (85.9ms)[0m  CREATE TABLE `food_preferences` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (142.5ms)[0m  [1mCREATE TABLE `food_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (95.6ms)[0m  CREATE TABLE `recipes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `food_preference_id` int(11), `food_type_id` int(11), `cuisine_id` int(11), `servings` int(11), `cooking_time` int(11), `level_of_difficulty` varchar(255), `ingredients` text, `procedure` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (96.7ms)[0m  [1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(128) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (187.8ms)[0m  CREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) 
+  [1m[36m (166.0ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) [0m
+  [1m[35m (90.2ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36m (198.8ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) [0m
+  [1m[35m (52.6ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (57.9ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130803121424')[0m
+  [1m[35m (32.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130803110704')
+  [1m[36m (33.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130803113359')[0m
+  [1m[35m (33.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130803103254')
+  [1m[36m (33.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130803111845')[0m
+  [1m[35m (33.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130803115230')
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.6ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.3ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 113629430)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 281110143)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374, 64810937)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+  [1m[36m (38.7ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.6ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.2ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 113629430)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 281110143)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374, 64810937)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+  [1m[36m (43.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.4ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.5ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+  [1m[36mFixture Delete (0.7ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 113629430)
+  [1m[36mFixture Insert (0.6ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 281110143)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374, 64810937)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)[0m
+  [1m[35mFixture Insert (0.8ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+  [1m[36m (47.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.3ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.6ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)[0m
+  [1m[35mFixture Insert (0.8ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 113629430)
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 281110143)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374, 64810937)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)[0m
+  [1m[35mFixture Insert (0.8ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+  [1m[36m (48.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.3ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 113629430)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 281110143)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374, 64810937)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+  [1m[36m (36.6ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.3ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 113629430)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 281110143)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374, 64810937)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+  [1m[36m (47.7ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.3ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.2ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)[0m
+  [1m[35mFixture Insert (0.8ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+  [1m[36mFixture Delete (0.7ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)
+  [1m[36mFixture Insert (0.7ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 113629430)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 281110143)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374, 64810937)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 980190962)[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:28', '2013-08-05 15:40:28', 298486374)
+  [1m[36m (38.6ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.3ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (55.2ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 980190962)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374)
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 980190962)
+  [1m[36mFixture Insert (0.8ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 113629430)
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 281110143)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374, 64810937)
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 980190962)
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.6ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:29', '2013-08-05 15:40:29', 980190962)[0m
+  [1m[35mFixture Insert (0.8ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374)
+  [1m[36m (45.8ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.3ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374)
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 113629430)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 281110143)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374, 64810937)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.7ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:29', '2013-08-05 15:40:29', 980190962)[0m
+  [1m[35mFixture Insert (0.7ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374)
+  [1m[36m (40.9ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.3ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.3ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM `cuisines`
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO `cuisines` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374)
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM `food_types`[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Curry', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Dessert', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Sides', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 113629430)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_types` (`name`, `created_at`, `updated_at`, `id`) VALUES ('Breakfast', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 281110143)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM `recipes`
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('Curry', 1, 1, 1, 1, 'Easy', 'MyText', 'MyText', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 980190962, 64810937)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `recipes` (`title`, `food_preference_id`, `cuisine_id`, `servings`, `cooking_time`, `level_of_difficulty`, `ingredients`, `procedure`, `created_at`, `updated_at`, `id`, `food_type_id`) VALUES ('MyString', 1, 1, 1, 1, 'MyString', 'MyText', 'MyText', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374, 64810937)
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM `food_preferences`[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO `food_preferences` (`name`, `created_at`, `updated_at`, `id`) VALUES ('MyString', '2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM `users`
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:29', '2013-08-05 15:40:29', 980190962)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374)
+Mysql2::Error: Duplicate entry '' for key 'index_users_on_email': INSERT INTO `users` (`created_at`, `updated_at`, `id`) VALUES ('2013-08-05 15:40:29', '2013-08-05 15:40:29', 298486374)
+  [1m[36m (43.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  SET FOREIGN_KEY_CHECKS = 1

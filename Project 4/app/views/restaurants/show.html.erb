@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @restaurant.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @restaurant.description %>
+</p>
+
+<h3>Menus</h3>
+<% @menus.each do |m|%>
+ <%=link_to m.title, menu_path(m)%>
+ <%= link_to "Export to CSV", export_menus_restaurants_path(format: "csv", :restaurant_id => @restaurant.id), :class=>"btn btn-default" %>
+<%end%>
+
+<%= link_to "Add a Menu", new_menu_path(:restaurant_id => @restaurant.id), :class=>"btn btn-default" %> 
+<%= link_to 'Edit', edit_restaurant_path(@restaurant), :class=>"btn btn-default" %> 
+<%= link_to 'Back', restaurants_path, :class=>"btn btn-default" %>

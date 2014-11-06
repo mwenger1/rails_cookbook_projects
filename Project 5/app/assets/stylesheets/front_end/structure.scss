@@ -1,0 +1,76 @@
+$primary-font: 'Cherry Swash', cursive;
+
+#primary, #content, #secondary {
+  height: 300px;
+  padding: 50px 0;
+  font-family: 'Flamenco', cursive;
+}
+
+#container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+#primary {
+  float: left;
+  width: 150px;
+  background: #eee;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+#content {
+  float: left;
+  width: 800px;
+  height: 300px;
+  background: #ccc;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#secondary {
+  float: left;
+  width: 150px;
+  background: #ddd;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#footer {
+  clear: both;
+  padding-top:3px;
+  font-family: $primary-font;
+}
+
+#header {
+  background: #fff;
+  height: 100px;
+  font-family: $primary-font;
+}
+
+#menu ul
+{
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+
+#menu a
+{
+    display: block;
+    width: 8em;
+    color: white;
+    background-color: #000099;
+    text-decoration: none;
+    text-align: center;
+}
+
+#menu a:hover
+{
+    background-color: #6666AA;
+}
+#menu li
+{
+    float: left;
+    margin-right: 0.5em;
+}

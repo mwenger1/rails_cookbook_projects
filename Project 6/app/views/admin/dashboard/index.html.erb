@@ -1,0 +1,83 @@
+<h3>Clicks and Impressions Per article</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Article</th>
+      <th>Cicks</th>
+      <th>Impressions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%=link_to article.title, article %></td>
+        <td><%= article.track_clicks_per_article %></td>
+        <td><%= article.impressionist_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Clicks Per Day</h3>
+<div id="click_chart" style="height: 250px;"></div>
+<h3>Impressions Per Day</h3>
+<div id="impressions_chart" style="height: 250px;"></div>
+<h3>Demographics</h3>
+<div id="demographic" style="height: 250px;"></div>
+<script>
+var url = "/admin/dashboard/clicks.json"
+var click_json= $.getJSON(url, null, function(data) {
+var get_click_data = click_json.responseText;
+
+new Morris.Line({
+  // ID of the element in which to draw the chart.
+  element: 'click_chart',
+  // Chart data records -- each entry in this array corresponds to a point on
+  // the chart.
+  
+  data: $.parseJSON((get_click_data)),
+  // The name of the data record attribute that contains x-values.
+  xkey: 'date',
+  // A list of names of data record attributes that contain y-values.
+  ykeys: ['clicks'],
+  // Labels for the ykeys -- will be displayed when you hover over the
+  // chart.
+  labels: ['Clicks']
+});
+done();
+});
+</script>
+<script>
+var url = "/admin/dashboard/impressions.json"
+var json= $.getJSON(url, null, function(data) {
+var get_impression_data = json.responseText;
+
+new Morris.Bar({
+  // ID of the element in which to draw the chart.
+  element: 'impressions_chart',
+  // Chart data records -- each entry in this array corresponds to a point on
+  // the chart.
+  
+  data: $.parseJSON((get_impression_data)),
+  // The name of the data record attribute that contains x-values.
+  xkey: 'date',
+  // A list of names of data record attributes that contain y-values.
+  ykeys: ['impressions'],
+  // Labels for the ykeys -- will be displayed when you hover over the
+  // chart.
+  labels: ['Impressions']
+});
+done();
+});
+</script>
+<script>
+Morris.Donut({
+  element: 'demographic',
+  data: [
+    {label: "United States", value: 12},
+    {label: "Taiwan", value: 30},
+    {label: "India", value: 20}
+  ]
+});
+</script>

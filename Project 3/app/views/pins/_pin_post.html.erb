@@ -1,0 +1,9 @@
+<%= form_tag(pin_post_path(pin), :remote=>true) do%>
+   <p>Select a board for Pinning</p>
+   <% Board.my_board(current_user).each do |b| %>
+    <%= radio_button_tag :board_id, b.id %>
+    <%=  b.title %><br/>
+   <%end%>
+
+  <%= submit_tag 'Save', :class => "btn btn-primary" %>
+<%end%>

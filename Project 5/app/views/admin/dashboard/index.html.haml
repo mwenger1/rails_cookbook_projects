@@ -1,0 +1,35 @@
+%h3 Admin Dashboard
+.panel.panel-default
+  / Default panel contents
+  .panel-heading
+    #{link_to '<i class="fa fa-folder-open"></i> Pages'.html_safe, pages_path, :class=>"btn btn-primary"}
+  / Table
+  %table.table
+    %thead
+      %tr
+        %th Title
+        %th Parent
+        %th Type
+    %tbody
+      - @pages.each do |p|
+        %tr
+          %td= link_to p.title, edit_page_path(p)
+          %td= p.parent_page.title
+          %td
+.panel.panel-default
+  / Default panel contents
+  .panel-heading
+    #{link_to '<i class="fa fa-folder-open"></i> Page Parts'.html_safe, parts_path, :class=>"btn btn-primary"}
+  / Table
+  %table.table
+    %thead
+      %tr
+        %th Title
+        %th Type
+        %th Created By
+    %tbody
+      - @parts.each do |p|
+        %tr
+          %td= link_to p.title, edit_page_path(p)
+          %td
+/           %td= p.user.email

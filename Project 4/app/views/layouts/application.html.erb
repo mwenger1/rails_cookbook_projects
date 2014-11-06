@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Go-table - Manage Tables With Ease</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <link href='http://fonts.googleapis.com/css?family=Bilbo+Swash+Caps' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Gudea' rel='stylesheet' type='text/css'>
+  <%= csrf_meta_tags %>
+  <style>
+  .navbar-brand {
+    font-size: 30px;
+    font-family: 'Bilbo Swash Caps', cursive;
+  }
+  h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'Gudea', sans-serif;
+  font-weight:500;
+  line-height:1.1;
+  }
+ </style>
+</head>
+<body>
+
+    <%= render :partial => 'layouts/navbar'%>
+    
+    <div class="container theme-showcase">
+      <%= yield %>
+    </div> <!-- /container -->
+
+
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+= form_for @part do |f|
+  - if @part.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@part.errors.count, "error")} prohibited this part from being saved:"
+      %ul
+        - @part.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :title
+    = f.text_field :title, :class=>"form-control"
+  .field
+    = f.label :part_type_id
+    = f.select(:part_type_id, options_from_collection_for_select(PartType.all, :id, :name), {:prompt => 'Please Choose'}, :class => "form-control")
+  .field
+    = f.label :content
+    = f.cktext_area :content, :rows => 20, :ckeditor => {:uiColor => "#AADC6E", :toolbar => "mini"}
+  .field
+    = f.label :meta
+    = f.text_field :meta, :class=>"form-control"
+  .field
+    = f.hidden_field :user_id, :value=>current_user.id
+  %br/
+  .actions
+    = f.submit 'Save',:class=>"btn btn-default"
+    = link_to 'Cancel', parts_path,:class=>"btn btn-danger"

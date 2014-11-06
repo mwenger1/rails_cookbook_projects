@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  restaurants: 1
+  tables: 1
+  menu_items: 1
+  storage: 1
+
+two:
+  name: MyString
+  restaurants: 1
+  tables: 1
+  menu_items: 1
+  storage: 1

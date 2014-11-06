@@ -1,0 +1,37 @@
+%h3 Site Details
+
+%table.table
+  %tr
+    %th Title
+    %th Organization
+    %th Address
+    %th Facebook
+    %th Twitter
+    %th Google plus
+    %th Skype
+    %th Linkedin
+    %th Google analytics
+    %th Telephone
+    %th
+    %th
+    %th
+
+  - @site_details.each do |site_detail|
+    %tr
+      %td= site_detail.title
+      %td= site_detail.organization
+      %td= site_detail.address
+      %td= site_detail.facebook
+      %td= site_detail.twitter
+      %td= site_detail.google_plus
+      %td= site_detail.skype
+      %td= site_detail.linkedin
+      %td= site_detail.google_analytics
+      %td= site_detail.telephone
+      %td= link_to 'Show', site_detail
+      %td= link_to 'Edit', edit_site_detail_path(site_detail)
+      %td= link_to 'Destroy', site_detail, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Site detail', new_site_detail_path

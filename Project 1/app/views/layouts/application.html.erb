@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Curry Nation</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <style>
+  .navbar-brand {
+    float: left;
+    margin-left: -15px;
+    margin-right: 5px;
+    margin-top: -11px;
+    }
+  </style>
+</head>
+<body>
+
+    <!-- Static navbar -->
+    <div class="navbar navbar-static-top">
+      <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><%= image_tag "currynation.png"%></a>
+        <div class="nav-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to "Recipes", recipes_path %></li>
+          </ul>
+          <ul class="nav navbar-nav pull-right">
+           <% if user_signed_in? %>
+            <li><%=link_to "#{current_user.email}" %></li>
+            <li class="active"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+           <%else%>
+            <li><%= link_to "Login", new_user_session_path %></li>
+            <li class="active"><%= link_to "SignUp", new_user_registration_path%></li>
+           <%end%>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+      <div class="row">
+        <div class="col-lg-2">
+          <div class="panel panel-primary" id="panels">
+            <div class="panel-heading">Food Prefernces
+            </div>
+             <% @food_preferences.each do |fp| %>
+	      <p><%= fp.name%></p>
+             <%end%>
+          </div>
+           <div class="panel panel-primary" id="panels">
+            <div class="panel-heading">Food Type
+            </div>
+             <% @food_types.each do |ft| %>
+	      <p><%= ft.name%></p>
+             <%end%>
+          </div>
+            <div class="panel panel-primary" id="panels">
+            <div class="panel-heading">Cuisine
+            </div>
+             <% @cuisines.each do |c| %>
+	      <p><%= c.name%></p>
+             <%end%>
+          </div>
+        </div>
+        <div class="col-lg-9">
+	  <%= yield %>
+        </div>    
+      </div>
+    
+</body>
+</html>

@@ -1,0 +1,182 @@
+  [1m[36m (143.4ms)[0m  [1mDROP DATABASE IF EXISTS `project-3_test`[0m
+  [1m[35m (19.6ms)[0m  CREATE DATABASE `project-3_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (141.7ms)[0m  [1mCREATE TABLE `boards` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` text, `created_at` datetime, `updated_at` datetime, `user_id` int(11), `slug` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (68.6ms)[0m  CREATE TABLE `friendly_id_slugs` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `slug` varchar(255) NOT NULL, `sluggable_id` int(11) NOT NULL, `sluggable_type` varchar(40), `scope` varchar(255), `created_at` datetime) ENGINE=InnoDB
+  [1m[36m (161.1ms)[0m  [1mCREATE UNIQUE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`, `scope`) [0m
+  [1m[35m (154.0ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`) 
+  [1m[36m (142.6ms)[0m  [1mCREATE INDEX `index_friendly_id_slugs_on_sluggable_id` USING btree ON `friendly_id_slugs` (`sluggable_id`) [0m
+  [1m[35m (143.3ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_sluggable_type` USING btree ON `friendly_id_slugs` (`sluggable_type`) 
+  [1m[36m (63.9ms)[0m  [1mCREATE TABLE `pins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime, `slug` varchar(255), `board_id` int(11), `image` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (62.7ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (133.8ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) [0m
+  [1m[35m (142.8ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) 
+  [1m[36m (84.9ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (188.0ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36m (0.7ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (42.3ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822140415')
+  [1m[36m (43.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822134311')[0m
+  [1m[35m (44.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822123846')
+  [1m[36m (44.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822140238')[0m
+  [1m[35m (44.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822140003')
+  [1m[36m (44.2ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822140207')[0m
+  [1m[35m (44.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822125648')
+  [1m[36m (43.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130821134358')[0m
+  [1m[35m (44.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130821091901')
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (190.1ms)[0m  [1mDROP DATABASE IF EXISTS `project-3_test`[0m
+  [1m[35m (0.8ms)[0m  CREATE DATABASE `project-3_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (76.2ms)[0m  [1mCREATE TABLE `boards` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` text, `created_at` datetime, `updated_at` datetime, `user_id` int(11), `slug` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (75.0ms)[0m  CREATE TABLE `friendly_id_slugs` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `slug` varchar(255) NOT NULL, `sluggable_id` int(11) NOT NULL, `sluggable_type` varchar(40), `scope` varchar(255), `created_at` datetime) ENGINE=InnoDB
+  [1m[36m (153.6ms)[0m  [1mCREATE UNIQUE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`, `scope`) [0m
+  [1m[35m (144.4ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`) 
+  [1m[36m (142.6ms)[0m  [1mCREATE INDEX `index_friendly_id_slugs_on_sluggable_id` USING btree ON `friendly_id_slugs` (`sluggable_id`) [0m
+  [1m[35m (143.1ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_sluggable_type` USING btree ON `friendly_id_slugs` (`sluggable_type`) 
+  [1m[36m (62.8ms)[0m  [1mCREATE TABLE `pins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime, `slug` varchar(255), `board_id` int(11), `image` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (74.3ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (143.5ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) [0m
+  [1m[35m (143.3ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) 
+  [1m[36m (65.8ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (166.0ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36m (0.4ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (31.6ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822140415')
+  [1m[36m (33.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822134311')[0m
+  [1m[35m (33.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822123846')
+  [1m[36m (32.9ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822140238')[0m
+  [1m[35m (32.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822140003')
+  [1m[36m (33.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822140207')[0m
+  [1m[35m (32.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822125648')
+  [1m[36m (33.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130821134358')[0m
+  [1m[35m (32.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130821091901')
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (190.8ms)[0m  [1mDROP DATABASE IF EXISTS `project-3_test`[0m
+  [1m[35m (0.5ms)[0m  CREATE DATABASE `project-3_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (81.8ms)[0m  [1mCREATE TABLE `boards` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` text, `created_at` datetime, `updated_at` datetime, `user_id` int(11), `slug` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (74.9ms)[0m  CREATE TABLE `friendly_id_slugs` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `slug` varchar(255) NOT NULL, `sluggable_id` int(11) NOT NULL, `sluggable_type` varchar(40), `scope` varchar(255), `created_at` datetime) ENGINE=InnoDB
+  [1m[36m (143.1ms)[0m  [1mCREATE UNIQUE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`, `scope`) [0m
+  [1m[35m (142.2ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`) 
+  [1m[36m (142.7ms)[0m  [1mCREATE INDEX `index_friendly_id_slugs_on_sluggable_id` USING btree ON `friendly_id_slugs` (`sluggable_id`) [0m
+  [1m[35m (143.0ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_sluggable_type` USING btree ON `friendly_id_slugs` (`sluggable_type`) 
+  [1m[36m (74.5ms)[0m  [1mCREATE TABLE `pins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime, `slug` varchar(255), `board_id` int(11), `image` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (74.2ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (144.5ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) [0m
+  [1m[35m (131.6ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) 
+  [1m[36m (65.8ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (165.6ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36m (0.5ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (44.2ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822140415')
+  [1m[36m (86.6ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822134311')[0m
+  [1m[35m (77.3ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822123846')
+  [1m[36m (66.3ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822140238')[0m
+  [1m[35m (44.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822140003')
+  [1m[36m (55.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822140207')[0m
+  [1m[35m (44.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822125648')
+  [1m[36m (44.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130821134358')[0m
+  [1m[35m (43.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130821091901')
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.7ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (230.5ms)[0m  [1mDROP DATABASE IF EXISTS `project-3_test`[0m
+  [1m[35m (0.7ms)[0m  CREATE DATABASE `project-3_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (72.0ms)[0m  [1mCREATE TABLE `boards` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` text, `created_at` datetime, `updated_at` datetime, `user_id` int(11), `slug` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (75.0ms)[0m  CREATE TABLE `friendly_id_slugs` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `slug` varchar(255) NOT NULL, `sluggable_id` int(11) NOT NULL, `sluggable_type` varchar(40), `scope` varchar(255), `created_at` datetime) ENGINE=InnoDB
+  [1m[36m (153.4ms)[0m  [1mCREATE UNIQUE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`, `scope`) [0m
+  [1m[35m (142.2ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`) 
+  [1m[36m (142.9ms)[0m  [1mCREATE INDEX `index_friendly_id_slugs_on_sluggable_id` USING btree ON `friendly_id_slugs` (`sluggable_id`) [0m
+  [1m[35m (143.3ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_sluggable_type` USING btree ON `friendly_id_slugs` (`sluggable_type`) 
+  [1m[36m (63.0ms)[0m  [1mCREATE TABLE `pins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime, `slug` varchar(255), `board_id` int(11), `image` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (63.7ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (144.3ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) [0m
+  [1m[35m (142.2ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) 
+  [1m[36m (76.5ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (187.9ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36m (0.5ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (42.2ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822140415')
+  [1m[36m (67.3ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822134311')[0m
+  [1m[35m (65.4ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822123846')
+  [1m[36m (55.4ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822140238')[0m
+  [1m[35m (81.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822140003')
+  [1m[36m (95.3ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822140207')[0m
+  [1m[35m (66.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822125648')
+  [1m[36m (44.2ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130821134358')[0m
+  [1m[35m (44.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130821091901')
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (276.9ms)[0m  [1mDROP DATABASE IF EXISTS `project-3_test`[0m
+  [1m[35m (0.5ms)[0m  CREATE DATABASE `project-3_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (74.7ms)[0m  [1mCREATE TABLE `boards` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` text, `created_at` datetime, `updated_at` datetime, `user_id` int(11), `slug` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (73.9ms)[0m  CREATE TABLE `friendly_id_slugs` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `slug` varchar(255) NOT NULL, `sluggable_id` int(11) NOT NULL, `sluggable_type` varchar(40), `scope` varchar(255), `created_at` datetime) ENGINE=InnoDB
+  [1m[36m (142.6ms)[0m  [1mCREATE UNIQUE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`, `scope`) [0m
+  [1m[35m (142.8ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`) 
+  [1m[36m (142.7ms)[0m  [1mCREATE INDEX `index_friendly_id_slugs_on_sluggable_id` USING btree ON `friendly_id_slugs` (`sluggable_id`) [0m
+  [1m[35m (142.6ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_sluggable_type` USING btree ON `friendly_id_slugs` (`sluggable_type`) 
+  [1m[36m (75.3ms)[0m  [1mCREATE TABLE `pins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime, `slug` varchar(255), `board_id` int(11), `image` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (51.7ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (143.4ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) [0m
+  [1m[35m (131.9ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) 
+  [1m[36m (76.7ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (187.5ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36m (0.4ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (42.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822140415')
+  [1m[36m (44.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822134311')[0m
+  [1m[35m (43.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822123846')
+  [1m[36m (44.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822140238')[0m
+  [1m[35m (43.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822140003')
+  [1m[36m (44.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822140207')[0m
+  [1m[35m (44.2ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822125648')
+  [1m[36m (43.9ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130821134358')[0m
+  [1m[35m (44.2ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130821091901')
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.6ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (193.8ms)[0m  [1mDROP DATABASE IF EXISTS `project-3_test`[0m
+  [1m[35m (0.8ms)[0m  CREATE DATABASE `project-3_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (72.6ms)[0m  [1mCREATE TABLE `boards` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` text, `created_at` datetime, `updated_at` datetime, `user_id` int(11), `slug` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (75.1ms)[0m  CREATE TABLE `friendly_id_slugs` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `slug` varchar(255) NOT NULL, `sluggable_id` int(11) NOT NULL, `sluggable_type` varchar(40), `scope` varchar(255), `created_at` datetime) ENGINE=InnoDB
+  [1m[36m (142.9ms)[0m  [1mCREATE UNIQUE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`, `scope`) [0m
+  [1m[35m (143.0ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`) 
+  [1m[36m (143.2ms)[0m  [1mCREATE INDEX `index_friendly_id_slugs_on_sluggable_id` USING btree ON `friendly_id_slugs` (`sluggable_id`) [0m
+  [1m[35m (143.8ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_sluggable_type` USING btree ON `friendly_id_slugs` (`sluggable_type`) 
+  [1m[36m (63.2ms)[0m  [1mCREATE TABLE `pins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime, `slug` varchar(255), `board_id` int(11), `image` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (74.4ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (154.4ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) [0m
+  [1m[35m (143.2ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) 
+  [1m[36m (67.5ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (166.2ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36m (0.6ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (31.2ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822140415')
+  [1m[36m (33.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822134311')[0m
+  [1m[35m (33.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822123846')
+  [1m[36m (43.7ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822140238')[0m
+  [1m[35m (44.3ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822140003')
+  [1m[36m (43.9ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822140207')[0m
+  [1m[35m (44.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822125648')
+  [1m[36m (43.9ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130821134358')[0m
+  [1m[35m (44.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130821091901')
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.6ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (249.7ms)[0m  [1mDROP DATABASE IF EXISTS `project-3_test`[0m
+  [1m[35m (0.5ms)[0m  CREATE DATABASE `project-3_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (80.7ms)[0m  [1mCREATE TABLE `boards` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` text, `created_at` datetime, `updated_at` datetime, `user_id` int(11), `slug` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (75.4ms)[0m  CREATE TABLE `friendly_id_slugs` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `slug` varchar(255) NOT NULL, `sluggable_id` int(11) NOT NULL, `sluggable_type` varchar(40), `scope` varchar(255), `created_at` datetime) ENGINE=InnoDB
+  [1m[36m (142.8ms)[0m  [1mCREATE UNIQUE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`, `scope`) [0m
+  [1m[35m (143.8ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_slug_and_sluggable_type` USING btree ON `friendly_id_slugs` (`slug`, `sluggable_type`) 
+  [1m[36m (143.7ms)[0m  [1mCREATE INDEX `index_friendly_id_slugs_on_sluggable_id` USING btree ON `friendly_id_slugs` (`sluggable_id`) [0m
+  [1m[35m (133.1ms)[0m  CREATE INDEX `index_friendly_id_slugs_on_sluggable_type` USING btree ON `friendly_id_slugs` (`sluggable_type`) 
+  [1m[36m (64.6ms)[0m  [1mCREATE TABLE `pins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime, `slug` varchar(255), `board_id` int(11), `image` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (64.1ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (166.0ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) [0m
+  [1m[35m (165.2ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) 
+  [1m[36m (72.6ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (199.1ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36m (0.4ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (43.3ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822140415')
+  [1m[36m (44.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822134311')[0m
+  [1m[35m (43.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822123846')
+  [1m[36m (44.3ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822140238')[0m
+  [1m[35m (44.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822140003')
+  [1m[36m (44.3ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130822140207')[0m
+  [1m[35m (44.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130822125648')
+  [1m[36m (44.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130821134358')[0m
+  [1m[35m (763.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130821091901')
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`

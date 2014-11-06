@@ -1,0 +1,32 @@
+!!!
+%html
+  %head
+    %title Helios CMS
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    / Wrap all page content here
+    #wrap
+      / Fixed navbar
+      .navbar.navbar-default.navbar-fixed-top
+        .container
+          .navbar-header
+            %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            %a.navbar-brand{href: "#"} Helios CMS
+          .collapse.navbar-collapse
+            %ul.nav.navbar-nav
+              %li.active= link_to "Admin", admin_path
+              %li= link_to "Page", pages_path
+              %li= link_to "Page Parts", parts_path
+              %li= link_to "Site Details", site_details_path
+            %ul.nav.navbar-nav.pull-right
+              - if user_signed_in?
+                %li= link_to "#{current_user.email}"
+                %li.active= link_to "Logout", destroy_user_session_path, :method => :delete
+          / /.nav-collapse
+      .container
+        = yield

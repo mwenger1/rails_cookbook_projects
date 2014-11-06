@@ -1,0 +1,42 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Preference</th>
+      <th>Type</th>
+      <th>Cuisine</th>
+      <th>Servings</th>
+      <th>Time</th>
+      <th>Difficulty</th>
+      <th>Ingredients</th>
+      <th>Procedure</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @recipes.each do |recipe| %>
+      <tr>
+        <td><%= recipe.title %></td>
+        <td><%= recipe.food_preference.name %></td>
+        <td><%= recipe.food_type %></td>
+        <td><%= recipe.cuisine.name %></td>
+        <td><%= recipe.servings %></td>
+        <td><%= recipe.cooking_time %></td>
+        <td><%= recipe.level_of_difficulty %></td>
+        <td><%= recipe.ingredients %></td>
+        <td><%= recipe.procedure %></td>
+        <td><%= link_to 'Show', recipe, :class=>"btn btn-primary btn-small"%></td>
+        <% if user_signed_in? %>
+        <td><%= link_to 'Edit', edit_recipe_path(recipe), :class=>"btn btn-success btn-small"%></td>
+        <td><%= link_to 'Delete', recipe, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %></td>
+        <%end%> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to 'Create a Recipe', new_recipe_path, :class=>"btn btn-default" %>

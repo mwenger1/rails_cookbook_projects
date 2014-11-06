@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  card_type: MyString
+  card_number: 1
+  cvv: 1
+  month: 1
+  year: 1
+  status: false
+
+two:
+  user_id: 1
+  card_type: MyString
+  card_number: 1
+  cvv: 1
+  month: 1
+  year: 1
+  status: false

@@ -1,0 +1,50 @@
+<style>
+  .css1 { font-size: 1.0em; }
+  .css2 { font-size: 1.2em; }
+  .css3 { font-size: 1.4em; }
+  .css4 { font-size: 1.6em; }
+</style>
+<div class="row">
+  <div class="col-lg-8">
+    <h3>Recently Created Events</h3>  
+    <% @events.each do |event| %>
+	<h3><%= event.title %></h3>  
+        <label>Start Date:</label>&nbsp;&nbsp;&nbsp;&nbsp;<%if event.start_date.present?%><%= l event.start_date, :format => :date_format %><%end%> ,        <label>End Date:</label>&nbsp;&nbsp;&nbsp;&nbsp;<%if event.start_time.present?%><%= l event.start_time, :format => :date_format %><%end%><br/>
+        <label>Location:</label><%= event.location %><br/>
+        <label>Address:</label>
+        <address>
+	  <%= event.address %><br/>
+	</address>
+	 <label>Agenda:</label>
+	 <%= event.agenda %><br/>
+	<label>Organized By:</label><br/>
+        <%@event_owner = event.event_owner(event.organizer_id)%>
+        <%= image_tag avatar_url(@event_owner) %>
+        <%= @event_owner.email %>
+        <br/>
+        
+        <label>Tags:</label><br/>
+	<%=raw event.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %><br/><br/>
+	
+        <%= link_to 'Show Details', event, :class=>"btn btn-info btn-small" %>
+        <% if user_signed_in? && event.organizer_id == current_user.id%>
+	  <%= link_to 'Edit', edit_event_path(event), :class=>"btn btn-primary btn-small" %>
+	  <%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
+        <%end%><br/><br/>
+    <% end %>
+  
+  </div>
+  <div class="col-lg-4">
+    <h3>Search Tags</h3>  
+    <div>
+     <% tag_cloud Event.tag_counts, %w{css1 css2 css3 css4} do |tag, css_class| %>
+      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+     <% end %>	
+   </div>
+  </div>
+</div>
+
+
+<br>
+
+<%= link_to 'Create an Event', new_event_path, :class=>"btn btn-default btn-primary" %>

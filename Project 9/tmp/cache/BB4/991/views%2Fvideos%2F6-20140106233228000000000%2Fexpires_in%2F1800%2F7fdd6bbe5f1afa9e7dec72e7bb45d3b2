@@ -1,0 +1,11 @@
+o: ActiveSupport::Cache::Entry:@valueI"g   <div class="row">
+    <div class="col-lg-8">
+      <h3>Scrolly Demo 2</h3>
+      <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="640" height="264"
+      data-setup="{}">
+	<source src="/uploads/video/video/6/mp4_scroll_indicator.mp4" type='video/mp4' />
+      </video>
+      <br/>
+      <p>Demo 2</p>
+    </div>
+:ET:@created_atf1394150971.1421013:@expires_in0

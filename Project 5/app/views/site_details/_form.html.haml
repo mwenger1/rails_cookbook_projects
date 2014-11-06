@@ -1,0 +1,44 @@
+= form_for @site_detail do |f|
+  - if @site_detail.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@site_detail.errors.count, "error")} prohibited this site_detail from being saved:"
+      %ul
+        - @site_detail.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :title
+    = f.text_field :title, :class=>"form-control"
+  .field
+    = f.label :organization
+    = f.text_field :organization, :class=>"form-control"
+  .field
+    = f.label :address
+    = f.text_area :address, :class=>"form-control"
+  .field
+    = f.label :facebook
+    = f.text_field :facebook, :class=>"form-control"
+  .field
+    = f.label :twitter
+    = f.text_field :twitter, :class=>"form-control"
+  .field
+    = f.label :google_plus
+    = f.text_field :google_plus, :class=>"form-control"
+  .field
+    = f.label :skype
+    = f.text_field :skype, :class=>"form-control"
+  .field
+    = f.label :linkedin
+    = f.text_field :linkedin, :class=>"form-control"
+  .field
+    = f.label :google_analytics
+    = f.text_area :google_analytics, :class=>"form-control"
+  .field
+    = f.label :telephone
+    = f.text_field :telephone, :class=>"form-control"
+  .field
+    = f.label :logo
+    = f.file_field :image
+  .actions
+    = f.submit 'Save', :class=>"btn btn-default" 
+    = link_to '<i class="fa fa-arrow-circle-left"></i>  Cancel'.html_safe, site_details_path, :class=>"btn btn-danger"

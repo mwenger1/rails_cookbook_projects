@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  part_type_id: 1
+  content: MyText
+  meta: MyString
+  user_id: MyString
+
+two:
+  title: MyString
+  part_type_id: 1
+  content: MyText
+  meta: MyString
+  user_id: MyString
